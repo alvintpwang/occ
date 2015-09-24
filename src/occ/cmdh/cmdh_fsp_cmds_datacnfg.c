@@ -495,12 +495,31 @@ errlHndl_t apss_store_adc_channel(const eApssAdcChannelAssignments i_func_id, co
             case ADC_MEMORY_PROC_0_2:
                 l_adc_function = &G_sysConfigData.apss_adc_map.memory[0][3];
                 break;
+
             case ADC_VDD_PROC_0:
             case ADC_VDD_PROC_1:
             case ADC_VDD_PROC_2:
             case ADC_VDD_PROC_3:
                 l_adc_function = &G_sysConfigData.apss_adc_map.vdd[i_func_id-ADC_VDD_PROC_0];
                 break;
+
+            // ADC_VDD_PROC extra channel 0~2
+            case ADC_VDD_PROC_0_0:
+            case ADC_VDD_PROC_1_0:
+                l_adc_function = &G_sysConfigData.apss_adc_map.vdd0[i_func_id-ADC_VDD_PROC_0_0];
+                break;
+
+            case ADC_VDD_PROC_0_1:
+            case ADC_VDD_PROC_1_1:
+                l_adc_function = &G_sysConfigData.apss_adc_map.vdd1[i_func_id-ADC_VDD_PROC_0_1];
+                break;
+
+            case ADC_VDD_PROC_0_2:
+            case ADC_VDD_PROC_1_2:
+                l_adc_function = &G_sysConfigData.apss_adc_map.vdd2[i_func_id-ADC_VDD_PROC_0_2];
+                break;
+
+
 
             case ADC_VCS_VIO_VPCIE_PROC_0:
             case ADC_VCS_VIO_VPCIE_PROC_1:

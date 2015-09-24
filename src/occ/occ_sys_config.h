@@ -119,6 +119,12 @@ typedef enum
     ADC_MEMORY_PROC_0_0         = 0x19, //NOTE: On Habanero, the processor has 4 centaurs with 1 APSS channel
     ADC_MEMORY_PROC_0_1         = 0x1A, //      assigned to each one of them. ADC_MEMORY_PROC_0 will be used
     ADC_MEMORY_PROC_0_2         = 0x1B, //      for the first one and these are for the other 3.
+	ADC_VDD_PROC_0_0            = 0x1C, //NOTE: On Barreleye, each processor has 4 APSS channels
+	ADC_VDD_PROC_0_1            = 0x1D, //      assigned to each one of them. ADC_VDD_PROC_0 will be used
+	ADC_VDD_PROC_0_2            = 0x1E, //      for the first one and these are for the other 3.
+	ADC_VDD_PROC_1_0            = 0x1F, //
+	ADC_VDD_PROC_1_1            = 0x20, //
+	ADC_VDD_PROC_1_2            = 0x21, //
     NUM_ADC_ASSIGNMENT_TYPES    // This should always be the last member
 } eApssAdcChannelAssignments;
 
@@ -175,6 +181,9 @@ typedef struct
   // to INVALID = xFF
   uint8_t memory[MAX_NUM_CHIP_MODULES][MAX_PROC_CENT_CH];
   uint8_t vdd[MAX_NUM_CHIP_MODULES];
+  uint8_t vdd0[MAX_NUM_CHIP_MODULES]; // For extra ADC channel
+  uint8_t vdd1[MAX_NUM_CHIP_MODULES]; // For extra ADC channel
+  uint8_t vdd2[MAX_NUM_CHIP_MODULES]; // For extra ADC channel
   uint8_t io[MAX_ADC_IO_DOMAINS];
   uint8_t fans[MAX_ADC_FAN_DOMAINS];
   uint8_t storage_media[MAX_ADC_STORAGE_DOMAINS];
