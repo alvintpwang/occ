@@ -254,6 +254,9 @@ void amec_update_apss_sensors(void)
                     }
                     amec_update_channel_sensor(G_sysConfigData.apss_adc_map.vdd[l_occIdx]);
                     amec_update_channel_sensor(G_sysConfigData.apss_adc_map.vcs_vio_vpcie[l_occIdx]);
+                    amec_update_channel_sensor(G_sysConfigData.apss_adc_map.vdd0[l_occIdx]);
+                    amec_update_channel_sensor(G_sysConfigData.apss_adc_map.vdd1[l_occIdx]);
+                    amec_update_channel_sensor(G_sysConfigData.apss_adc_map.vdd2[l_occIdx]);
                 }
             }
 
@@ -291,6 +294,10 @@ void amec_update_apss_sensors(void)
         //Update channel specific sensors based on saved pairing between function Ids and Channels.
 
         uint32_t l_vdd = ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vdd[l_proc]);
+        l_vdd += ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vdd0[l_proc]);
+        l_vdd += ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vdd1[l_proc]);
+        l_vdd += ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vdd2[l_proc]);
+
         uint32_t l_vcs_vio_vpcie = ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vcs_vio_vpcie[l_proc]);
         temp32 = ((l_vcs_vio_vpcie + l_vdd) * l_bulk_voltage)/ADCMULT_TO_UNITS;
         sensor_update(AMECSENSOR_PTR(PWR250USP0), (uint16_t) temp32);
@@ -299,6 +306,10 @@ void amec_update_apss_sensors(void)
         for (l_idx=0; l_idx < MAX_NUM_CHIP_MODULES; l_idx++)
         {
             uint32_t l_vd = ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vdd[l_idx]);
+            l_vdd += ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vdd0[l_idx]);
+            l_vdd += ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vdd1[l_idx]);
+            l_vdd += ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vdd2[l_idx]);
+
             uint32_t l_vpcie = ADC_CONVERTED_VALUE(G_sysConfigData.apss_adc_map.vcs_vio_vpcie[l_idx]);
             g_amec->proc_snr_pwr[l_idx] =  ((l_vpcie + l_vd) * l_bulk_voltage)/ADCMULT_TO_UNITS;
         }
