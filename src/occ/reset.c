@@ -153,7 +153,7 @@ void task_check_for_checkstop(task_t *i_self)
     ocb_oisr0_t l_oisr0_status;
     static bool L_checkstop_traced = FALSE;
     uint8_t l_reason_code = 0;
-
+    return;
     do
     {
         // This check is disabled once a checkstop or frozen GPE is detected

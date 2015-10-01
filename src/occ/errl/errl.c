@@ -366,7 +366,7 @@ void addTraceToErrl(
     static bool L_gpe_halt_traced = FALSE;
     static bool L_sys_checkstop_traced = FALSE;
 
-
+    return;
     // check if GPE was frozen due to a checkstop
     l_gpe0_status.value = in64(PORE_GPE0_STATUS);
     if(l_gpe0_status.fields.freeze_action && !L_gpe_halt_traced)

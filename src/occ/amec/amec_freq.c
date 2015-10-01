@@ -255,7 +255,9 @@ void amec_slv_voting_box(void)
         l_chip_fmax = g_amec->proc[0].pwr_votes.ppb_fmax;
         l_chip_reason = AMEC_VOTING_REASON_PPB;
         l_kvm_throt_reason = POWERCAP;
+        TRAC_INFO("PPB power cap %d  %d", g_amec->proc[0].pwr_votes.ppb_fmax, l_chip_fmax);
     }
+
 
     // PMAX_CLIP_FREQ
     if(g_amec->proc[0].pwr_votes.pmax_clip_freq < l_chip_fmax)
@@ -347,6 +349,9 @@ void amec_slv_voting_box(void)
                 // PROC_PCAP_NOM_VOTE
                 if(g_amec->proc[0].pwr_votes.proc_pcap_nom_vote < l_core_freq)
                 {
+		    TRAC_INFO("PROC_PCAP_NOM_VOTE %d %d", 
+		              g_amec->proc[0].pwr_votes.proc_pcap_nom_vote, 
+			      l_core_freq);
                     l_core_freq = g_amec->proc[0].pwr_votes.proc_pcap_nom_vote;
                     l_core_reason = AMEC_VOTING_REASON_PWR;
                     l_kvm_throt_reason = POWERCAP;
@@ -357,6 +362,9 @@ void amec_slv_voting_box(void)
                 // PROC_PCAP_VOTE
                 if(g_amec->proc[0].pwr_votes.proc_pcap_vote < l_core_freq)
                 {
+		    TRAC_INFO("PROC_PCAP_VOTE %d %d",
+		              g_amec->proc[0].pwr_votes.proc_pcap_vote,
+			      l_core_freq);
                     l_core_freq = g_amec->proc[0].pwr_votes.proc_pcap_vote;
                     l_core_reason = AMEC_VOTING_REASON_PWR;
                     l_kvm_throt_reason = POWERCAP;

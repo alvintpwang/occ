@@ -261,6 +261,14 @@ void amec_pcap_controller(void)
 
     l_power_avail = g_amec->pcap.active_proc_pcap - AMECSENSOR_PTR(PWR250USP0)->sample;
 
+    static int32_t count=0;
+    count++;
+
+    if(count%1000==0)
+        TRAC_IMP(">>%d %d %d", l_power_avail, l_proc_pcap_vote,
+	         g_amec->proc[0].pwr_votes.nom_pcap_fmin);
+
+
     if(l_proc_pcap_vote > g_amec->proc[0].pwr_votes.nom_pcap_fmin)
     {
         l_proc_pcap_vote = g_amec->proc[0].core_max_freq +
@@ -270,6 +278,9 @@ void amec_pcap_controller(void)
     {
         l_proc_pcap_vote += (PROC_MHZ_PER_WATT * l_power_avail);
     }
+
+    if(count%1000==0)
+        TRAC_IMP(">>%d %d %d", l_proc_pcap_vote, g_amec->proc[0].core_max_freq);
 
     if(l_proc_pcap_vote > G_sysConfigData.sys_mode_freq.table[OCC_MODE_TURBO])
     {
@@ -290,7 +301,6 @@ void amec_pcap_controller(void)
     {
         g_amec->proc[0].pwr_votes.proc_pcap_nom_vote = l_proc_pcap_vote;
     }
-
     g_amec->proc[0].pwr_votes.proc_pcap_vote = l_proc_pcap_vote;
 }
 
