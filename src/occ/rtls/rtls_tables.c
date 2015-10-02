@@ -35,7 +35,7 @@
 #include "amec_master_smh.h"
 
 //flags for task table
-#define APSS_TASK_FLAGS                  RTL_FLAG_MSTR | RTL_FLAG_NOTMSTR | RTL_FLAG_OBS | RTL_FLAG_ACTIVE | RTL_FLAG_MSTR_READY |                    RTL_FLAG_RUN
+#define APSS_TASK_FLAGS  RTL_FLAG_NONE//                RTL_FLAG_MSTR | RTL_FLAG_NOTMSTR | RTL_FLAG_OBS | RTL_FLAG_ACTIVE | RTL_FLAG_MSTR_READY |                    RTL_FLAG_RUN
 
 #define FLAGS_DCOM_RX_SLV_INBX           RTL_FLAG_MSTR | RTL_FLAG_NOTMSTR | RTL_FLAG_OBS | RTL_FLAG_ACTIVE |                                          RTL_FLAG_RUN | RTL_FLAG_STANDBY | RTL_FLAG_RST_REQ | RTL_FLAG_APSS_NOT_INITD
 #define FLAGS_DCOM_TX_SLV_INBX           RTL_FLAG_MSTR |                    RTL_FLAG_OBS | RTL_FLAG_ACTIVE | RTL_FLAG_MSTR_READY |                    RTL_FLAG_RUN | RTL_FLAG_STANDBY | RTL_FLAG_RST_REQ | RTL_FLAG_APSS_NOT_INITD
